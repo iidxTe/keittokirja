@@ -11,4 +11,4 @@ Toimintoja:
 * reseptien haku kategorioittain
 
 
-Linkki tietokantakaavioon:
+Linkki tietokantakaavioon: https://app.creately.com/diagram/bSgqFueVxxf/view
