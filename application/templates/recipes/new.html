@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('recipes_create') }}">
+  <input type="text" name="header"/>
+  <br>
+  <textarea rows="40" cols="100" name="content">
+  </textarea>
+  <br>
+  <input type="submit" value="Lisää resepti"/>
+</form>
+{% endblock %}

@@ -60,7 +60,7 @@ __pycache__
 
 
 #SQLAlchemy:
-tasks.db
+recipes.db
 
 
 #https://github.com/github/gitignore/blob/master/Python.gitignore:
