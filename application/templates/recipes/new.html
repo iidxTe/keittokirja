@@ -2,11 +2,31 @@
   
 {% block body %}
 <form method="POST" action="{{ url_for('recipes_create') }}">
-  <input type="text" name="header"/>
-  <br>
-  <textarea rows="40" cols="100" name="content">
-  </textarea>
-  <br>
-  <input type="submit" value="Lisää resepti"/>
+
+  <div class="w-75 p-4">
+    <label>Otsikoi resepti</label>
+    <textarea class="form-control" name="header" rows="1"></textarea>
+  </div>
+
+  <div class="w-75 p-4">
+    <label>Valitse kategoria</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+
+  <div class="w-75 p-4">
+    <label>Kirjoita resepti</label>
+    <textarea class="form-control" name="content" rows="40"></textarea>
+  </div>
+
+  <div class="w-75 p-4">
+    <button input type="submit" class="btn btn-success">Lisää resepti</button>
+  </div>
+
 </form>
 {% endblock %}

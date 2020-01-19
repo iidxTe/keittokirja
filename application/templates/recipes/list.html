@@ -1,20 +1,21 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Resepti</th>
-    </tr>
+
+  <article>
+
     {% for recipe in recipes %}
-    <tr>
-      <th>{{ recipe.header }}</th>
-      <td>{{ recipe.content }}</td>
-      <td>
-	<form method="POST" action="{{ url_for('recipes_remove', recipe_id=recipe.id) }}">
-	  <input type="submit" value="Poista resepti"/>
-	</form>
-      </td>
-    </tr>
+
+    <h2>{{ recipe.header }}</h2>
+
+    <p>{{ recipe.content }}</p>
+
+  	<form method="POST" action="{{ url_for('recipes_remove', recipe_id=recipe.id) }}">
+      <button input type="submit" class="btn btn-danger">Poista resepti</button>
+    </form>
+
     {% endfor %}
-  </table>
+
+  </article>
+
 {% endblock %}
