@@ -2,20 +2,26 @@
 
 {% block body %}
 
-  <article>
-
     {% for recipe in recipes %}
 
-    <h2>{{ recipe.header }}</h2>
+    <article>
+
+    <h3>{{ recipe.header }}</h3>
+
+    <h5>Kategoria: {{ recipe.category }}</h5>
 
     <p>{{ recipe.content }}</p>
 
+    <form action="edit.html">
+      <button method="POST" type="submit" class="btn btn-success">Muokkaa reseptiä</button>
+    </form><br>
+
   	<form method="POST" action="{{ url_for('recipes_remove', recipe_id=recipe.id) }}">
       <button input type="submit" class="btn btn-danger">Poista resepti</button>
-    </form>
-
-    {% endfor %}
+    </form><br>
 
   </article>
+
+    {% endfor %}
 
 {% endblock %}
