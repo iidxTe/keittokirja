@@ -2,9 +2,6 @@ from application import db
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-    onupdate=db.func.current_timestamp())
 
     header = db.Column(db.String(60), nullable=False)
     category = db.Column(db.String(30), nullable=False)

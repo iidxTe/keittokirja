@@ -6,21 +6,17 @@
 
     <article>
 
-    <h3>{{ recipe.header }}</h3>
+      <h3>{{ recipe.header }}</h3>
 
-    <h5>Kategoria: {{ recipe.category }}</h5>
+      <h5>Kategoria: {{ recipe.category }}</h5>
 
-    <p>{{ recipe.content }}</p>
+      <p>{{ recipe.content }}</p>
 
-    <form action="edit.html">
-      <button method="POST" type="submit" class="btn btn-success">Muokkaa reseptiä</button>
-    </form><br>
+      <form method="GET" action="{{ url_for('recipes_render_edit_form', recipe_id=recipe.id) }}">
+          <button input type="submit" class="btn btn-primary">Muokkaa reseptiä</button>
+      </form><br>
 
-  	<form method="POST" action="{{ url_for('recipes_remove', recipe_id=recipe.id) }}">
-      <button input type="submit" class="btn btn-danger">Poista resepti</button>
-    </form><br>
-
-  </article>
+    </article>
 
     {% endfor %}
 
