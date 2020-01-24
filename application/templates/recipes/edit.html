@@ -4,22 +4,22 @@
 
     <form method="POST" action="{{ url_for('recipes_edit', recipe_id=recipe.id) }}">
 
-        <div class="w-75 p-4">
+        <div class="w-100 p-4">
           <label>Muokkaa otsikkoa</label>
           <textarea class="form-control" name="header" rows="1">{{ recipe.header }}</textarea>
         </div>
       
-        <div class="w-75 p-4">
+        <div class="w-100 p-4">
           <label>Muokkaa kategoriaa</label>
           <textarea class="form-control" name="category" rows="1">{{ recipe.category }}</textarea>
         </div>
       
-        <div class="w-75 p-4">
+        <div class="w-100 p-4">
           <label>Muokkaa reseptiä</label>
           <textarea class="form-control" name="content" rows="40">{{ recipe.content }}</textarea>
         </div>
       
-        <div class="w-75 p-4">
+        <div class="w-100 p-4">
           <button input type="submit" class="btn btn-success">Tallenna muutokset</button>
         </div>
       

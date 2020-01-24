@@ -3,22 +3,22 @@
 {% block body %}
 <form method="POST" action="{{ url_for('recipes_create') }}">
 
-  <div class="w-75 p-4">
+  <div class="w-100 p-4">
     <label>Otsikoi resepti</label>
     <textarea class="form-control" name="header" rows="1"></textarea>
   </div>
 
-  <div class="w-75 p-4">
+  <div class="w-100 p-4">
     <label>Lisää kategoria</label>
     <textarea class="form-control" name="category" rows="1"></textarea>
   </div>
 
-  <div class="w-75 p-4">
+  <div class="w-100 p-4">
     <label>Kirjoita resepti</label>
     <textarea class="form-control" name="content" rows="40"></textarea>
   </div>
 
-  <div class="w-75 p-4">
+  <div class="w-100 p-4">
     <button input type="submit" class="btn btn-success">Lisää resepti</button>
   </div>
 
