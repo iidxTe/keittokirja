@@ -13,7 +13,7 @@ def recipes_form():
 
 @app.route("/recipes/", methods=["POST"])
 def recipes_create():
-    r = Recipe(request.form.get("header"), request.form.get("category"), request.form.get("content"))
+    r = Recipe(request.form.get("header"), request.form.get("category"), request.form.get("description"), request.form.get("ingredients"), request.form.get("directions"))
 
     db.session().add(r)
     db.session().commit()
@@ -43,7 +43,9 @@ def recipes_edit(recipe_id):
 
     r.header = request.form.get("header")
     r.category = request.form.get("category")
-    r.content = request.form.get("content")
+    r.description = request.form.get("description")
+    r.ingredients = request.form.get("ingredients")
+    r.directions = request.form.get("directions")
 
     db.session().commit()
   

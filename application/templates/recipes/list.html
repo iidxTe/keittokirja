@@ -10,7 +10,11 @@
 
       <h5>Kategoria: {{ recipe.category }}</h5>
 
-      <p>{{ recipe.content }}</p>
+      <p>{{ recipe.description }}</p>
+
+      <p>{{ recipe.ingredients }}</p>
+
+      <p>{{ recipe.directions }}</p>
 
       <form method="GET" action="{{ url_for('recipes_render_edit_form', recipe_id=recipe.id) }}">
           <button input type="submit" class="btn btn-primary">Muokkaa reseptiä</button>
