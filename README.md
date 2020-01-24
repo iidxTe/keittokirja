@@ -14,3 +14,5 @@ Toimintoja:
 Linkki tietokantakaavioon: https://app.creately.com/diagram/bSgqFueVxxf/view
 
 Linkki Herokuun: https://keittokirja-tsoha.herokuapp.com/
+
+Linkki user storyihin: https://github.com/iidxTe/keittokirja/blob/master/documentation/USERSTORIES.md
