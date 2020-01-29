@@ -29,7 +29,8 @@
       <li><a href="{{ url_for('recipes_form') }}">Lisää resepti</a></li>
     </ul>
     {% else %}
-    <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+    <a href="{{ url_for('auth_login') }}">Kirjaudu</a><br>
+    <a href="{{ url_for('auth_register') }}">Rekisteröidy</a><br><br>
     {% endif %}
 
     
