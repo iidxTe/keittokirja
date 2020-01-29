@@ -8,6 +8,8 @@ class User(db.Model):
     name = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
+    recipes = db.relationship("Recipe", backref='account', lazy=True)
+
     def __init__(self, name, password):
         self.name = name
         self.password = password

@@ -10,6 +10,9 @@ class Recipe(db.Model):
     ingredients = db.Column(db.String(10000), nullable=False)
     directions = db.Column(db.String(10000), nullable=False)
 
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
+                           nullable=False)
+
     def __init__(self, header, category, description, ingredients, directions):
         self.header = header
         self.category = category

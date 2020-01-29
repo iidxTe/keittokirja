@@ -4,23 +4,30 @@
 
     {% for recipe in recipes %}
 
+    {% if current_user.id == recipe.account_id %}
+
     <article>
 
-      <h3>{{ recipe.header }}</h3>
+      <h3>{{ recipe.header }}</h3><br>
 
-      <h5>Kategoria: {{ recipe.category }}</h5>
+      <h5>Kategoria: {{ recipe.category }}</h5><br>
 
-      <p>{{ recipe.description }}</p>
+      <h6>Kuvaus</h6>
+      <p>{{ recipe.description }}</p><br>
 
-      <p>{{ recipe.ingredients }}</p>
+      <h6>Ainekset</h6>
+      <p>{{ recipe.ingredients }}</p><br>
 
-      <p>{{ recipe.directions }}</p>
+      <h6>Työvaiheet</h6>
+      <p>{{ recipe.directions }}</p><br>
 
       <form method="GET" action="{{ url_for('recipes_render_edit_form', recipe_id=recipe.id) }}">
           <button input type="submit" class="btn btn-primary">Muokkaa reseptiä</button>
       </form><br>
 
     </article>
+
+    {% endif %}
 
     {% endfor %}
 
