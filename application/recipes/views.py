@@ -3,6 +3,7 @@ from flask import redirect, render_template, request, url_for
 from application.recipes.models import Recipe
 from sqlalchemy import update
 
+
 @app.route("/recipes", methods=["GET"])
 def recipes_index():
     return render_template("recipes/list.html", recipes = Recipe.query.all())
@@ -50,5 +51,8 @@ def recipes_edit(recipe_id):
     db.session().commit()
   
     return redirect(url_for("recipes_index"))
+
+
+
 
 

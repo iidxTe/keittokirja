@@ -13,18 +13,31 @@
       <div class="jumbotron text-center">
         <h1>Keittokirja</h1>
         <h4>- omat reseptini -</h2>
-      </div>
+    </div>
+
+    {% if current_user.is_authenticated %}
+    <p>
+	    Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+    </p>
+    <p>
+      Tervetuloa Keittokirjasovellukseen. 
+      Tänne voit helposti tallentaa kaikki parhaat reseptisi 
+      ja tarkastella niitä koska vain haluat.
+  </p>
+    <ul>
+      <li><a href="{{ url_for('recipes_index') }}">Reseptisivulle</a></li>
+      <li><a href="{{ url_for('recipes_form') }}">Lisää resepti</a></li>
+    </ul>
+    {% else %}
+    <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+    {% endif %}
+
     
     {% block body %}
       <p>
         Content.
       </p>
     {% endblock %}
-
-    <ul>
-      <li><a href="{{ url_for('recipes_index') }}">Reseptisivulle</a></li>
-      <li><a href="{{ url_for('recipes_form') }}">Lisää resepti</a></li>
-    </ul>
 
   </div>
 
