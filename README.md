@@ -21,6 +21,11 @@ Harjoitustyössä tehdään elektroninen keittokirja. Käyttäjä voi tunnukset 
 
 Linkki [tietokantakaavioon](https://app.creately.com/diagram/bSgqFueVxxf/view) 
 
-Linkki [Herokuun](https://keittokirja-tsoha.herokuapp.com/)
-
 Linkki [user storyihin](https://github.com/iidxTe/keittokirja/blob/master/documentation/USERSTORIES.md)
+
+Linkki [Herokuun](https://keittokirja-tsoha.herokuapp.com/)
+* testikäyttäjä 1: 
+name: testi, password: testi
+
+* testikäyttäjä 2: 
+name: testi2, password: testi2
