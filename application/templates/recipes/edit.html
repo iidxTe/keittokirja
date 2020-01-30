@@ -1,42 +1,39 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<form method="POST" action="{{ url_for('recipes_edit', recipe_id=recipe.id) }}">
+    <div class="w-100 p-4">
+        <label>{{ form.header.label }}</label><br>
+        {{ form.header (class="form-control", rows="1")}}
+    </div><br>
 
-    <form method="POST" action="{{ url_for('recipes_edit', recipe_id=recipe.id) }}">
+    <div class="w-100 p-4">
+        <label>{{ form.category.label }}</label><br>
+        {{ form.category (class="form-control", rows="1")}}
+    </div><br>
 
-        <div class="w-100 p-4">
-          <label>Muokkaa otsikkoa</label>
-          <textarea class="form-control" name="header" rows="1">{{ recipe.header }}</textarea>
-        </div>
-      
-        <div class="w-100 p-4">
-          <label>Muokkaa kategoriaa</label>
-          <textarea class="form-control" name="category" rows="1">{{ recipe.category }}</textarea>
-        </div>
-      
-        <div class="w-100 p-4">
-            <label>Muokkaa kuvausta</label>
-            <textarea class="form-control" name="description" rows="10">{{ recipe.description }}</textarea>
-          </div>
-        
-        <div class="w-100 p-4">
-            <label>Muokkaa aineslistaa</label>
-            <textarea class="form-control" name="ingredients" rows="40">{{ recipe.ingredients }}</textarea>
-        </div>
-        
-        <div class="w-100 p-4">
-            <label>Muokkaa työvaiheita</label>
-            <textarea class="form-control" name="directions" rows="40">{{ recipe.directions }}</textarea>
-        </div>
-      
-        <div class="w-100 p-4">
-          <button input type="submit" class="btn btn-success">Tallenna muutokset</button>
-        </div>
-      
-      </form>
+    <div class="w-100 p-4">
+        <label>{{ form.description.label }}</label><br>
+        {{ form.description (class="form-control", rows="10")}}
+    </div><br>
 
-      <form method="POST" action="{{ url_for('recipes_remove', recipe_id=recipe.id) }}">
-        <button input type="submit" class="btn btn-danger">Poista resepti</button>
-    </form><br>
+    <div class="w-100 p-4">
+        <label>{{ form.ingredients.label }}</label><br>
+        {{ form.ingredients (class="form-control", rows="40")}}
+    </div><br>
+
+    <div class="w-100 p-4">
+        <label>{{ form.directions.label }}</label><br>
+        {{ form.directions (class="form-control", rows="40")}}
+    </div><br>
+
+    <div class="w-100 p-4">
+        <button input type="submit" class="btn btn-success">Tallenna muutokset</button>
+    </div><br>
+</form>
+
+<form method="POST" action="{{ url_for('recipes_remove', recipe_id=recipe.id) }}">
+    <button input type="submit" class="btn btn-danger">Poista resepti</button>
+</form><br>
 
 {% endblock %}

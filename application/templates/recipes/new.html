@@ -1,37 +1,35 @@
 {% extends "layout.html" %}
-  
+
 {% block body %}
 <form method="POST" action="{{ url_for('recipes_create') }}">
+    <div class="w-100 p-4">
+        <label>{{ form.header.label }}</label><br>
+        {{ form.header (class="form-control", rows="1")}}
+    </div><br>
 
-  <div class="w-100 p-4">
-    <label>Otsikoi resepti</label>
-    <textarea class="form-control" name="header" rows="1"></textarea>
-  </div>
+    <div class="w-100 p-4">
+        <label>{{ form.category.label }}</label><br>
+        {{ form.category (class="form-control", rows="1")}}
+    </div><br>
 
-  <div class="w-100 p-4">
-    <label>Lisää kategoria</label>
-    <textarea class="form-control" name="category" rows="1"></textarea>
-  </div>
+    <div class="w-100 p-4">
+        <label>{{ form.description.label }}</label><br>
+        {{ form.description (class="form-control", rows="10")}}
+    </div><br>
 
-  <div class="w-100 p-4">
-    <label>Kirjoita kuvaus</label>
-    <textarea class="form-control" name="description" rows="10"></textarea>
-  </div>
+    <div class="w-100 p-4">
+        <label>{{ form.ingredients.label }}</label><br>
+        {{ form.ingredients (class="form-control", rows="40")}}
+    </div><br>
 
-  <div class="w-100 p-4">
-    <label>Listaa ainekset</label>
-    <textarea class="form-control" name="ingredients" rows="40"></textarea>
-  </div>
+    <div class="w-100 p-4">
+        <label>{{ form.directions.label }}</label><br>
+        {{ form.directions (class="form-control", rows="40")}}
+    </div><br>
 
-  <div class="w-100 p-4">
-    <label>Listaa työvaiheet</label>
-    <textarea class="form-control" name="directions" rows="40"></textarea>
-  </div>
-
-  <div class="w-100 p-4">
-    <button input type="submit" class="btn btn-success">Lisää resepti</button>
-  </div>
+    <div class="w-100 p-4">
+        <button input type="submit" class="btn btn-success">Lisää resepti</button>
+    </div>
 
 </form>
-
 {% endblock %}

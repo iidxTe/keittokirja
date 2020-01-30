@@ -26,7 +26,7 @@
   </p>
     <ul>
       <li><a href="{{ url_for('recipes_index') }}">Reseptisivulle</a></li>
-      <li><a href="{{ url_for('recipes_form') }}">Lisää resepti</a></li>
+      <li><a href="{{ url_for('recipes_create') }}">Lisää resepti</a></li>
     </ul>
     {% else %}
     <a href="{{ url_for('auth_login') }}">Kirjaudu</a><br>
