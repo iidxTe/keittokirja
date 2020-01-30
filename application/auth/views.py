@@ -8,14 +8,13 @@ from application.auth.forms import LoginForm, RegisterForm
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
     if request.method == "GET":
-        return render_template("auth/loginform.html", form = LoginForm())
+        return render_template("auth/login.html", form = LoginForm())
 
     form = LoginForm(request.form)
-    # mahdolliset validoinnit
 
     user = User.query.filter_by(name=form.name.data, password=form.password.data).first()
     if not user:
-        return render_template("auth/loginform.html", form = form,
+        return render_template("auth/login.html", form = form,
                                error = "No such name or password")
 
 
@@ -31,10 +30,11 @@ def auth_logout():
 @app.route("/auth/register", methods = ["GET", "POST"])
 def auth_register():
     if request.method == "GET":
-        return render_template("auth/registerform.html", form = RegisterForm())
+        return render_template("auth/register.html", form = RegisterForm())
         
     form = RegisterForm(request.form)
-    # mahdolliset validoinnit
+    if not form.validate():
+        return render_template("auth/register.html", form = form)
 
     
     u = User.query.filter_by(name=form.name.data).first()
@@ -46,7 +46,7 @@ def auth_register():
         
         return redirect(url_for("index"))
     
-    return render_template("auth/registerform.html", form = form,
+    return render_template("auth/register.html", form = form,
                                error = "Name already registered")
 
 
