@@ -15,7 +15,7 @@ def auth_login():
     user = User.query.filter_by(name=form.name.data, password=form.password.data).first()
     if not user:
         return render_template("auth/login.html", form = form,
-                               error = "No such name or password")
+                               error = "Väärä nimi tai salasana")
 
 
     login_user(user)
@@ -47,6 +47,6 @@ def auth_register():
         return redirect(url_for("index"))
     
     return render_template("auth/register.html", form = form,
-                               error = "Name already registered")
+                               error = "Nimi jo käytössä")
 
 

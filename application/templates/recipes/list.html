@@ -2,9 +2,7 @@
 
 {% block body %}
 
-    {% for recipe in recipes %}
-
-    {% if current_user.id == recipe.account_id %}
+{% for recipe in recipes %}
 
     <article>
 
@@ -26,8 +24,6 @@
       </form><br>
 
     </article>
-
-    {% endif %}
 
     {% endfor %}
 

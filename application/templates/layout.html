@@ -20,7 +20,8 @@
 
     {% if current_user.is_authenticated %}
 
-      <a class="nav-item nav-link" href="{{ url_for('recipes_index') }}">Reseptisivulle</a>
+      <a class="nav-item nav-link" href="{{ url_for('recipes_index', user_id=current_user.id) }}">Reseptisivulle</a>
+
       <a class="nav-item nav-link" href="{{ url_for('recipes_create') }}">Lisää resepti</a>
       <a class="nav-item nav-link" href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
 

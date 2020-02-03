@@ -5,13 +5,16 @@ from application import app, db
 from application.recipes.models import Recipe
 from application.recipes.forms import NewForm, EditForm
 
+from application.auth.models import User
+
 from sqlalchemy import update
 
 
-@app.route("/recipes", methods=["GET"])
+@app.route("/recipes/<user_id>/", methods=["GET"])
 @login_required
-def recipes_index():
-    return render_template("recipes/list.html", recipes = Recipe.query.all())
+def recipes_index(user_id):
+
+    return render_template("recipes/list.html", recipes = Recipe.query.filter(Recipe.account_id == user_id))
 
 @app.route("/recipes/new/", methods=["GET", "POST"])
 @login_required
@@ -28,7 +31,7 @@ def recipes_create():
     db.session().add(recipe)
     db.session().commit()
   
-    return redirect(url_for("recipes_index"))
+    return redirect(url_for("recipes_index", user_id = recipe.account_id))
 
 @app.route("/recipes/<recipe_id>/", methods=["POST"])
 @login_required
@@ -38,7 +41,7 @@ def recipes_remove(recipe_id):
     db.session().delete(recipe)
     db.session().commit()
   
-    return redirect(url_for("recipes_index"))
+    return redirect(url_for("recipes_index", user_id = recipe.account_id))
 
 @app.route("/recipes/edit/<recipe_id>/", methods=["GET", "POST"])
 @login_required
@@ -63,7 +66,7 @@ def recipes_edit(recipe_id):
 
     db.session().commit()
   
-    return redirect(url_for("recipes_index"))
+    return redirect(url_for("recipes_index", user_id = recipe.account_id))
 
 
 
