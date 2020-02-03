@@ -15,24 +15,41 @@
         <h4>- omat reseptini -</h2>
     </div>
 
+
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+
     {% if current_user.is_authenticated %}
+
+      <a class="nav-item nav-link" href="{{ url_for('recipes_index') }}">Reseptisivulle</a>
+      <a class="nav-item nav-link" href="{{ url_for('recipes_create') }}">Lisää resepti</a>
+      <a class="nav-item nav-link" href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+
+    </nav>
+
+    <br>
     <p>
-	    Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+      Olet Kirjautunut nimellä {{ current_user.name }}.
     </p>
     <p>
       Tervetuloa Keittokirjasovellukseen. 
       Tänne voit helposti tallentaa kaikki parhaat reseptisi 
       ja tarkastella niitä koska vain haluat.
-  </p>
-    <ul>
-      <li><a href="{{ url_for('recipes_index') }}">Reseptisivulle</a></li>
-      <li><a href="{{ url_for('recipes_create') }}">Lisää resepti</a></li>
-    </ul>
+    </p>
+
     {% else %}
-    <a href="{{ url_for('auth_login') }}">Kirjaudu</a><br>
-    <a href="{{ url_for('auth_register') }}">Rekisteröidy</a><br><br>
+
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+
+      <a class="nav-item nav-link" href="{{ url_for('auth_login') }}">Kirjaudu</a>
+      <a class="nav-item nav-link" href="{{ url_for('auth_register') }}">Rekisteröidy</a>
+
+    </nav>
+
     {% endif %}
 
+  </div>
+
+  <div class="w-80 p-4 ml-4 mr-4">
     
     {% block body %}
       <p>

@@ -3,7 +3,7 @@
 {% block body %}
 {{ error }}
 <form method="POST" action="{{ url_for('auth_login') }}">
-  <table>
+  <table class="table">
     <tr>
       <td>
 	{{ form.name.label }}
@@ -22,7 +22,7 @@
     </tr>
     <tr>
       <td colspan="2">
-	<input type="submit" value="Login"/>
+      <button input type="submit" type="button" class="btn btn-info">Kirjaudu</button>
       </td>
     </tr>
 </form>
