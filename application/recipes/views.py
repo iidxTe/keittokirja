@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 
 from application import app, db
-from application.recipes.models import Recipe
+from application.recipes.models import Recipe, Ingredient, RecipeIngredient
 from application.recipes.forms import NewForm, EditForm
 
 from application.auth.models import User
@@ -25,10 +25,26 @@ def recipes_create():
 
     form = NewForm(request.form)
 
-    recipe = Recipe(form.header.data, form.category.data, form.description.data, form.ingredients.data, form.directions.data)
+    recipe = Recipe(form.header.data, form.category.data, form.description.data, form.directions.data)
     recipe.account_id = current_user.id
 
     db.session().add(recipe)
+    db.session().flush()
+
+
+    ingredient = Ingredient.query.filter_by(name=form.ingredientName.data).first()
+
+    if not ingredient:
+        ingredient = Ingredient(form.ingredientName.data)
+        db.session().add(ingredient)
+        db.session().flush()
+
+    recipeIngredient = RecipeIngredient(form.ingredientAmount.data, form.ingredientUnit.data)
+    recipeIngredient.recipe_id = recipe.id
+    recipeIngredient.ingredient_id = ingredient.id
+
+    db.session().add(recipeIngredient)
+
     db.session().commit()
   
     return redirect(url_for("recipes_index", user_id = recipe.account_id))
@@ -54,14 +70,12 @@ def recipes_edit(recipe_id):
         form.header.data = recipe.header
         form.category.data = recipe.category
         form.description.data = recipe.description
-        form.ingredients.data = recipe.ingredients
         form.directions.data = recipe.directions
         return render_template("recipes/edit.html", recipe = recipe, form = form)
 
     recipe.header = request.form.get("header")
     recipe.category = request.form.get("category")
     recipe.description = request.form.get("description")
-    recipe.ingredients = request.form.get("ingredients")
     recipe.directions = request.form.get("directions")
 
     db.session().commit()

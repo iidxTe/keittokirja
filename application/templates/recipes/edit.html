@@ -18,8 +18,14 @@
     </div><br>
 
     <div class="w-100 p-4">
-        <label>{{ form.ingredients.label }}</label><br>
-        {{ form.ingredients (class="form-control", rows="40")}}
+        <label>{{ form.ingredientName.label }}</label><br>
+        {{ form.ingredientName (class="form-control", rows="1")}}
+
+        <label>{{ form.ingredientAmount.label }}</label><br>
+        {{ form.ingredientAmount (class="form-control", rows="1")}}
+
+        <label>{{ form.ingredientUnit.label }}</label><br>
+        {{ form.ingredientUnit (class="form-control", rows="1")}}
     </div><br>
 
     <div class="w-100 p-4">
