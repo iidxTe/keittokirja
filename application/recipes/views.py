@@ -54,6 +54,10 @@ def recipes_create():
 def recipes_remove(recipe_id):
 
     recipe = Recipe.query.get(recipe_id)
+
+    recipeIngredient = RecipeIngredient.query.filter_by(recipe_id=recipe.id).first()
+    db.session().delete(recipeIngredient)
+
     db.session().delete(recipe)
     db.session().commit()
   
@@ -64,18 +68,26 @@ def recipes_remove(recipe_id):
 def recipes_edit(recipe_id):
 
     recipe = Recipe.query.get(recipe_id)
+    recipeIngredient = RecipeIngredient.query.filter_by(recipe_id=recipe.id).first()
+    ingredient = Ingredient.query.filter_by(id=recipeIngredient.ingredient_id).first()
 
     if request.method == "GET":
         form = EditForm()
         form.header.data = recipe.header
         form.category.data = recipe.category
         form.description.data = recipe.description
+        form.ingredientName.data = ingredient.name
+        form.ingredientAmount.data = recipeIngredient.amount
+        form.ingredientUnit.data = recipeIngredient.unit
         form.directions.data = recipe.directions
         return render_template("recipes/edit.html", recipe = recipe, form = form)
 
     recipe.header = request.form.get("header")
     recipe.category = request.form.get("category")
     recipe.description = request.form.get("description")
+    ingredient.name = request.form.get("ingredientName")
+    recipeIngredient.amount = request.form.get("ingredientAmount")
+    recipeIngredient.unit = request.form.get("ingredientUnit")
     recipe.directions = request.form.get("directions")
 
     db.session().commit()
