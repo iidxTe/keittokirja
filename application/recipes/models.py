@@ -26,8 +26,7 @@ class Recipe(db.Model):
         stmt = text("SELECT Recipe.id, Recipe.header, Recipe.category, Recipe.description, Ingredient.name, Recipe_Ingredient.amount, Recipe_Ingredient.unit, Recipe.directions FROM Recipe"
                     " INNER JOIN Recipe_Ingredient ON Recipe.id = Recipe_Ingredient.recipe_id"
                     " INNER JOIN Ingredient ON Recipe_Ingredient.ingredient_id = Ingredient.id"
-                    " WHERE Recipe.account_id = :user_id"
-                    " GROUP BY Recipe.id").params(user_id=user_id)
+                    " WHERE Recipe.account_id = :user_id").params(user_id=user_id)
         res = db.engine.execute(stmt)
 
         response = []
