@@ -1,14 +1,20 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, validators
+from wtforms import StringField, TextAreaField, FieldList, FormField, validators
+
+class IngredientForm(FlaskForm):
+    ingredientName = StringField("Ainesosa", [validators.InputRequired])
+    ingredientAmount = StringField("Määrä", [validators.InputRequired])
+    ingredientUnit = StringField("Yksikkö", [validators.InputRequired])
+
+    class Meta:
+        csrf = False
 
 class NewForm(FlaskForm):
     header = StringField("Otsikoi resepti", [validators.InputRequired])
     category = StringField("Lisää kategoria", [validators.InputRequired])
     description = TextAreaField("Kirjoita kuvaus")
 
-    ingredientName = TextAreaField("Lisää ainesosa", [validators.InputRequired])
-    ingredientAmount = TextAreaField("Lisää määrä")
-    ingredientUnit = TextAreaField("Lisää yksikkö")
+    ingredients = FieldList(FormField(IngredientForm))
 
     directions = TextAreaField("Listaa työvaiheet", [validators.InputRequired])
  
@@ -21,9 +27,7 @@ class EditForm(FlaskForm):
     category = StringField("Muokkaa kategoriaa", [validators.InputRequired])
     description = TextAreaField("Muokkaa kuvausta")
 
-    ingredientName = TextAreaField("Muokkaa ainesosaa", [validators.InputRequired])
-    ingredientAmount = TextAreaField("Muokkaa määrää")
-    ingredientUnit = TextAreaField("Muokkaa yksikköä")
+    ingredients = FieldList(FormField(IngredientForm))
 
     directions = TextAreaField("Muokkaa työvaiheita", [validators.InputRequired])
  

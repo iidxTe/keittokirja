@@ -10,13 +10,24 @@
 
       <h5>Kategoria: {{ recipe.category }}</h5><br>
 
-      <h6>Kuvaus</h6>
+      <h6><b>Kuvaus</b></h6>
       <p>{{ recipe.description }}</p><br>
 
-      <h6>Ainekset</h6>
+      <table class="table">
+        <tr>
+          <th>Ainesosa</th>
+          <th>Määrä</th>
+          <th>Yksikkö</th>
+        </tr>
+        
+        <tr>
+          <td>{{ recipe.name }}</td>
+          <td>{{ recipe.amount }}</td>
+          <td>{{ recipe.unit }}</td>
+        </tr>
+      </table>
 
-
-      <h6>Työvaiheet</h6>
+      <h6><b>Työvaiheet</b></h6>
       <p>{{ recipe.directions }}</p><br>
 
       <form method="GET" action="{{ url_for('recipes_edit', recipe_id=recipe.id) }}">
