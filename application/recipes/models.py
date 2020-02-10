@@ -35,6 +35,18 @@ class Recipe(db.Model):
 
         return response
 
+    @staticmethod
+    def count_my_recipes(user_id):
+        stmt = text("SELECT COUNT(*) FROM Recipe WHERE account_id = :user_id").params(user_id=user_id)
+        res = db.engine.execute(stmt)
+
+        response = []
+
+        for row in res:
+            response.append({"määrä":row[0]})
+
+        return response
+
 
 class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)

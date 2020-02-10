@@ -37,9 +37,9 @@ def auth_register():
         return render_template("auth/register.html", form = form)
 
     
-    u = User.query.filter_by(name=form.name.data).first()
+    user = User.query.filter_by(name=form.name.data).first()
 
-    if not u:
+    if not user:
         user = User(form.name.data, form.password.data)
         db.session().add(user)
         db.session().commit()

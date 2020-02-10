@@ -15,8 +15,10 @@ from sqlalchemy import update
 def recipes_index(user_id):
 
     recipes = Recipe.get_recipes_with_ingredients(user_id)
+
+    recipeCount = Recipe.count_my_recipes(user_id)
     
-    return render_template("recipes/list.html", recipes = recipes)
+    return render_template("recipes/list.html", recipes = recipes, recipeCount = recipeCount)
 
 @app.route("/recipes/new/", methods=["GET", "POST"])
 @login_required
@@ -65,19 +67,26 @@ def recipes_edit(recipe_id):
 
     if request.method == "GET":
         form = EditForm()
-        form.ingredients.append_entry({})
+        #form.ingredients.append_entry({})
 
         form.header.data = recipe.header
         form.category.data = recipe.category
         form.description.data = recipe.description
 
-        """ TO BE FIXED
-        form.ingredients.ingredientName.data = ingredient.name
-        form.ingredients.ingredientAmount.data = recipeIngredient.amount
-        form.ingredients.ingredientUnit.data = recipeIngredient.unit
-        """
+        ingredients = []
+        ingredientForm = IngredientForm()
 
+        ingredientForm.ingredientName.data = ingredient.name
+        ingredientForm.ingredientAmount.data = recipeIngredient.amount
+        ingredientForm.ingredientUnit.data = recipeIngredient.unit
+
+        ingredients.append(ingredientForm)
+
+        form.ingredients = ingredients
+
+    
         form.directions.data = recipe.directions
+
         return render_template("recipes/edit.html", recipe = recipe, form = form)
 
     form = EditForm(request.form)
@@ -96,13 +105,10 @@ def recipes_edit(recipe_id):
             db.session().add(ingr)
             db.session().flush()
 
-    ingredient.name = Ingredient(ingredientForm['ingredientName']).name
-    recipeIngredient.amount = RecipeIngredient(ingredientForm['ingredientAmount']).amount
-    recipeIngredient.unit = RecipeIngredient(ingredientForm['ingredientUnit']).unit
-    
-    #ingredient.name = request.form.get("ingredientName")
-    #recipeIngredient.amount = request.form.get("ingredientAmount")
-    #recipeIngredient.unit = request.form.get("ingredientUnit")
+        recipeIngredient.amount = ingredientForm['ingredientAmount']
+        recipeIngredient.unit = ingredientForm['ingredientUnit']
+        recipeIngredient.ingredient_id = ingr.id
+        db.session.add(recipeIngredient)
 
     recipe.directions = request.form.get("directions")
 
