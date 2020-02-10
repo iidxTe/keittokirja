@@ -23,7 +23,7 @@ Linkki [tietokantakaavioon](https://app.creately.com/diagram/bSgqFueVxxf/view)
 
 Linkki [user storyihin](https://github.com/iidxTe/keittokirja/blob/master/documentation/USERSTORIES.md)
 
-Linkki [Herokuun](https://keittokirja-tsoha.herokuapp.com/)
+Linkki [Herokuun](https://keittokirja-tsoha.herokuapp.com/) (pe 7.2.: tällä hetkellä editointi ei toimi ja reseptille voi lisätä vain yhden ainesosan)
 * testikäyttäjä 1: 
 name: testi, password: testi
 
