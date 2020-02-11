@@ -2,8 +2,10 @@ from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 
 from application import app, db
-from application.recipes.models import Recipe, Ingredient, RecipeIngredient
-from application.recipes.forms import NewForm, EditForm, IngredientForm
+from application.recipes.models import Recipe, RecipeIngredient
+from application.recipes.forms import NewForm, EditForm
+from application.ingredients.forms import IngredientForm
+from application.ingredients.models import Ingredient
 
 from application.auth.models import User
 
@@ -17,8 +19,10 @@ def recipes_index(user_id):
     recipes = Recipe.get_recipes_with_ingredients(user_id)
 
     recipeCount = Recipe.count_my_recipes(user_id)
+
+    recipesPerUser = Recipe.list_how_many_recipes_per_user()
     
-    return render_template("recipes/list.html", recipes = recipes, recipeCount = recipeCount)
+    return render_template("recipes/list.html", recipes = recipes, recipeCount = recipeCount, recipesPerUser = recipesPerUser)
 
 @app.route("/recipes/new/", methods=["GET", "POST"])
 @login_required
@@ -84,18 +88,19 @@ def recipes_edit(recipe_id):
 
         form.ingredients = ingredients
 
-    
         form.directions.data = recipe.directions
 
         return render_template("recipes/edit.html", recipe = recipe, form = form)
 
     form = EditForm(request.form)
+    
 
-    recipe.header = request.form.get("header")
-    recipe.category = request.form.get("category")
-    recipe.description = request.form.get("description")
+    recipe.header = form.header.data
+    recipe.category = form.category.data
+    recipe.description = form.description.data
 
-
+    #for ingredientForm in form.ingredients:
+    #ingredientForm = form.ingredients[0]
     for ingredientForm in form.ingredients.data:
 
         ingr = Ingredient.query.filter_by(name=ingredientForm['ingredientName']).first()
@@ -105,12 +110,16 @@ def recipes_edit(recipe_id):
             db.session().add(ingr)
             db.session().flush()
 
-        recipeIngredient.amount = ingredientForm['ingredientAmount']
-        recipeIngredient.unit = ingredientForm['ingredientUnit']
-        recipeIngredient.ingredient_id = ingr.id
-        db.session.add(recipeIngredient)
+        if not recipeIngredient:
+            recipeIngredient = RecipeIngredient()
+            recipeIngredient.recipe_id = recipe.id
+            db.session().add(recipeIngredient)
+            db.session.flush()
+        
+        RecipeIngredient.query.update().where(id=recipeIngredient.id)\
+            .values(ingredient_id=ingr.id, amount=ingredientForm['ingredientAmount'], unit=ingredientForm['ingredientUnit'])
 
-    recipe.directions = request.form.get("directions")
+    recipe.directions = form.directions.data
 
     db.session().commit()
   

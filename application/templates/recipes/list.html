@@ -2,13 +2,29 @@
 
 {% block body %}
 
+<p>
+  Olet tallentanut {{ recipeCount }} reseptiä. 
+</p>
+
+{% if recipesPerUser is defined %}
+  <p>
+    Kaikkien käyttäjien reseptit:
+  </p>
+  
+  <ul>
+    {% for user in recipesPerUser %}
+    <li>
+      {{ user.name }} {{ user.count }}
+    </li>
+    {% endfor %}
+  </ul>
+
+{% endif %}
+
+
 {% for recipe in recipes %}
 
     <article>
-
-      <p>
-        Olet tallentanut {{ recipeCount }} reseptiä. 
-      </p><br>
 
       <h3>{{ recipe.header }}</h3><br>
 

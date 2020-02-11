@@ -18,18 +18,18 @@
     </div><br>
 
     {% for ingredient in form.ingredients %}
-    <div class="w-100 p-4">
+        <div class="w-100 p-4">
 
-        <label>{{ ingredient.ingredientName.label }}</label><br>
-        {{ ingredient.ingredientName (class="form-control", rows="1")}}
+            <label>{{ ingredient.ingredientName.label }}</label><br>
+            {{ ingredient.ingredientName (class="form-control", rows="1")}}
 
-        <label>{{ ingredient.ingredientAmount.label }}</label><br>
-        {{ ingredient.ingredientAmount (class="form-control", rows="1")}}
+            <label>{{ ingredient.ingredientAmount.label }}</label><br>
+            {{ ingredient.ingredientAmount (class="form-control", rows="1")}}
 
-        <label>{{ ingredient.ingredientUnit.label }}</label><br>
-        {{ ingredient.ingredientUnit (class="form-control", rows="1")}}
+            <label>{{ ingredient.ingredientUnit.label }}</label><br>
+            {{ ingredient.ingredientUnit (class="form-control", rows="1")}}
 
-    </div><br>
+        </div><br>
     {% endfor %}
 
     <div class="w-100 p-4">

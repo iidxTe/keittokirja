@@ -1,9 +1,10 @@
 from application import db
+from application.models import Base
+from application.auth.models import User
 
 from sqlalchemy.sql import text
 
-class Recipe(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+class Recipe(Base):
 
     header = db.Column(db.String(200), nullable=False)
     category = db.Column(db.String(100), nullable=False)
@@ -43,20 +44,25 @@ class Recipe(db.Model):
         response = []
 
         for row in res:
-            response.append({"määrä":row[0]})
+            response.append(row[0])
 
         return response
 
 
-class Ingredient(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    @staticmethod
+    def list_how_many_recipes_per_user():
+        stmt = text("SELECT Account.name, COUNT(Recipe.account_id)"
+                    " FROM Account"
+                    " LEFT JOIN Recipe ON Account.id = Recipe.account_id"
+                    " GROUP BY Account.id, Recipe.account_id")
+        res = db.engine.execute(stmt)
 
-    name = db.Column(db.String(200), nullable=False)
-    #unique=True
+        response = []
+        for row in res:
+            response.append({"name":row[0], "count":row[1]})
 
-    def __init__(self, name):
-        self.name = name
-
+        return response
+        
 
 class RecipeIngredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)

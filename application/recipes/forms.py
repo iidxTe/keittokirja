@@ -1,13 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, FieldList, FormField, validators
 
-class IngredientForm(FlaskForm):
-    ingredientName = StringField("Ainesosa", [validators.InputRequired])
-    ingredientAmount = StringField("Määrä", [validators.InputRequired])
-    ingredientUnit = StringField("Yksikkö", [validators.InputRequired])
+from application.ingredients.forms import IngredientForm
 
-    class Meta:
-        csrf = False
+#ADD MORE VALIDATORS
 
 class NewForm(FlaskForm):
     header = StringField("Otsikoi resepti", [validators.InputRequired])

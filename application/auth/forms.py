@@ -1,5 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, validators
+
+#ADD MORE VALIDATORS
   
 class LoginForm(FlaskForm):
     name = StringField("Nimi", [validators.InputRequired])
