@@ -92,32 +92,32 @@ def recipes_edit(recipe_id):
 
         return render_template("recipes/edit.html", recipe = recipe, form = form)
 
+
     form = EditForm(request.form)
-    
 
     recipe.header = form.header.data
     recipe.category = form.category.data
     recipe.description = form.description.data
 
-    #for ingredientForm in form.ingredients:
-    #ingredientForm = form.ingredients[0]
-    for ingredientForm in form.ingredients.data:
+    ingredientForm = IngredientForm(ingredientName=ingredient.name, ingredientAmount=recipeIngredient.amount, ingredientUnit=recipeIngredient.unit)
 
-        ingr = Ingredient.query.filter_by(name=ingredientForm['ingredientName']).first()
+    ingredient = Ingredient.query.filter_by(name=ingredientForm.data['ingredientName']).first()
 
-        if not ingr:
-            ingr = Ingredient(ingredientForm['ingredientName'])
-            db.session().add(ingr)
-            db.session().flush()
+    if not ingredient:
+        ingredient = Ingredient(ingredientForm.data['ingredientName'])
+        db.session().add(ingredient)
+        db.session().flush()
 
-        if not recipeIngredient:
-            recipeIngredient = RecipeIngredient()
-            recipeIngredient.recipe_id = recipe.id
-            db.session().add(recipeIngredient)
-            db.session.flush()
-        
-        RecipeIngredient.query.update().where(id=recipeIngredient.id)\
-            .values(ingredient_id=ingr.id, amount=ingredientForm['ingredientAmount'], unit=ingredientForm['ingredientUnit'])
+
+    recipeIngredientNew = RecipeIngredient(ingredientForm.data['ingredientAmount'], ingredientForm.data['ingredientUnit'])
+
+    recipeIngredientNew.recipe_id = recipe.id
+
+    recipeIngredientNew.ingredient_id = ingredient.id
+
+    db.session().add(recipeIngredientNew)
+
+    db.session().delete(recipeIngredient)
 
     recipe.directions = form.directions.data
 

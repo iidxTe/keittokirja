@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('recipes_edit', recipe_id=recipe.id) }}">
+<form method="POST" action="{{ url_for('recipes_edit', recipe_id=recipe.id) }}", role=form>
     <div class="w-100 p-4">
         <label>{{ form.header.label }}</label><br>
         {{ form.header (class="form-control", rows="1")}}
@@ -28,6 +28,7 @@
 
             <label>{{ ingredient.ingredientUnit.label }}</label><br>
             {{ ingredient.ingredientUnit (class="form-control", rows="1")}}
+
 
         </div><br>
     {% endfor %}
