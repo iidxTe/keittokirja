@@ -18,11 +18,9 @@ def recipes_index(user_id):
 
     recipes = Recipe.get_recipes_with_ingredients(user_id)
 
-    recipeCount = Recipe.count_my_recipes(user_id)
-
     recipesPerUser = Recipe.list_how_many_recipes_per_user()
     
-    return render_template("recipes/list.html", recipes = recipes, recipeCount = recipeCount, recipesPerUser = recipesPerUser)
+    return render_template("recipes/list.html", recipes = recipes, recipesPerUser = recipesPerUser)
 
 @app.route("/recipes/new/", methods=["GET", "POST"])
 @login_required

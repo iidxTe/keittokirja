@@ -3,37 +3,37 @@
 {% block body %}
 <form method="POST" action="{{ url_for('recipes_create') }}">
     <div class="w-100 p-4">
-        <label>{{ form.header.label }}</label><br>
+        <label for="header">{{ form.header.label }}</label><br>
         {{ form.header (class="form-control", rows="1")}}
     </div><br>
 
     <div class="w-100 p-4">
-        <label>{{ form.category.label }}</label><br>
+        <label for="category">{{ form.category.label }}</label><br>
         {{ form.category (class="form-control", rows="1")}}
     </div><br>
 
     <div class="w-100 p-4">
-        <label>{{ form.description.label }}</label><br>
+        <label for="description">{{ form.description.label }}</label><br>
         {{ form.description (class="form-control", rows="10")}}
     </div><br>
 
     {% for ingredient in form.ingredients %}
         <div class="w-100 p-4">
 
-            <label>{{ ingredient.ingredientName.label }}</label><br>
+            <label for="ingredient name">{{ ingredient.ingredientName.label }}</label><br>
             {{ ingredient.ingredientName (class="form-control", rows="1")}}
 
-            <label>{{ ingredient.ingredientAmount.label }}</label><br>
+            <label for="ingredient amount">{{ ingredient.ingredientAmount.label }}</label><br>
             {{ ingredient.ingredientAmount (class="form-control", rows="1")}}
 
-            <label>{{ ingredient.ingredientUnit.label }}</label><br>
+            <label for="ingredient unit">{{ ingredient.ingredientUnit.label }}</label><br>
             {{ ingredient.ingredientUnit (class="form-control", rows="1")}}
 
         </div><br>
     {% endfor %}
 
     <div class="w-100 p-4">
-        <label>{{ form.directions.label }}</label><br>
+        <label for="directions">{{ form.directions.label }}</label><br>
         {{ form.directions (class="form-control", rows="20")}}
     </div><br>
 
