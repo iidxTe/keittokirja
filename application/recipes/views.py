@@ -55,18 +55,20 @@ def recipes_create():
 
     for ingredientForm in form.ingredients.data:
 
-        ingredient = Ingredient.query.filter_by(name=ingredientForm['ingredientName']).first()
+        if ingredientForm['ingredientName']:
 
-        if not ingredient:
-            ingredient = Ingredient(ingredientForm['ingredientName'])
-            db.session().add(ingredient)
-            db.session().flush()
+            ingredient = Ingredient.query.filter_by(name=ingredientForm['ingredientName']).first()
 
-        recipeIngredient = RecipeIngredient(ingredientForm['ingredientAmount'], ingredientForm['ingredientUnit'])
-        recipeIngredient.recipe_id = recipe.id
-        recipeIngredient.ingredient_id = ingredient.id
+            if not ingredient:
+                ingredient = Ingredient(ingredientForm['ingredientName'])
+                db.session().add(ingredient)
+                db.session().flush()
 
-        db.session().add(recipeIngredient)
+            recipeIngredient = RecipeIngredient(ingredientForm['ingredientAmount'], ingredientForm['ingredientUnit'])
+            recipeIngredient.recipe_id = recipe.id
+            recipeIngredient.ingredient_id = ingredient.id
+
+            db.session().add(recipeIngredient)
 
     db.session().commit()
   

@@ -4,9 +4,9 @@ from wtforms import StringField, validators
 #ADD MORE VALIDATORS
 
 class IngredientForm(FlaskForm):
-    ingredientName = StringField("Ainesosa", [validators.InputRequired])
-    ingredientAmount = StringField("Määrä", [validators.InputRequired])
-    ingredientUnit = StringField("Yksikkö", [validators.InputRequired])
+    ingredientName = StringField("Ainesosa")
+    ingredientAmount = StringField("Määrä")
+    ingredientUnit = StringField("Yksikkö")
 
     class Meta:
         csrf = False
