@@ -41,19 +41,25 @@
       <p><b>Kuvaus</b></p>
       <p>{{ recipe.description }}</p><br>
 
-      <table class="table">
-        <tr>
-          <th>Ainesosa</th>
-          <th>Määrä</th>
-          <th>Yksikkö</th>
-        </tr>
-        
-        <tr>
-          <td>{{ recipe.name }}</td>
-          <td>{{ recipe.amount }}</td>
-          <td>{{ recipe.unit }}</td>
-        </tr>
-      </table>
+        <table class="table">
+          <tr>
+            <th>Ainesosa</th>
+            <th>Määrä</th>
+            <th>Yksikkö</th>
+          </tr>
+
+          {% for ingredient in recipe.ingredients %}
+          
+          <tr>
+            <td>{{ ingredient.name }}</td>
+            <td>{{ ingredient.amount }}</td>
+            <td>{{ ingredient.unit }}</td>
+          </tr>
+
+          {% endfor %}
+
+        </table>
+
 
       <p><b>Työvaiheet</b></p>
       <p>{{ recipe.directions }}</p><br>

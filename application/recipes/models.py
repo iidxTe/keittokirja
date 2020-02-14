@@ -21,21 +21,7 @@ class Recipe(Base):
         self.category = category
         self.description = description
         self.directions = directions
-
-
-    @staticmethod
-    def get_recipes_with_ingredients(user_id):
-        stmt = text("SELECT Recipe.id, Recipe.header, Recipe.category, Recipe.description, Ingredient.name, Recipe_Ingredient.amount, Recipe_Ingredient.unit, Recipe.directions FROM Recipe"
-                    " INNER JOIN Recipe_Ingredient ON Recipe.id = Recipe_Ingredient.recipe_id"
-                    " INNER JOIN Ingredient ON Recipe_Ingredient.ingredient_id = Ingredient.id"
-                    " WHERE Recipe.account_id = :user_id").params(user_id=user_id)
-        res = db.engine.execute(stmt)
-
-        response = []
-        for row in res:
-            response.append({"id":row[0], "header":row[1], "category":row[2], "description":row[3], "name":row[4], "amount":row[5], "unit":row[6], "directions":row[7]})
-
-        return response
+        
 
     @staticmethod
     def count_my_recipes(user_id):

@@ -16,7 +16,17 @@ from sqlalchemy import update
 @login_required
 def recipes_index(user_id):
 
-    recipes = Recipe.get_recipes_with_ingredients(user_id)
+    recipes = Recipe.query.filter_by(account_id=user_id).all()
+    for recipe in recipes:
+        recipe.ingredients = []
+        recipeIngredients = RecipeIngredient.query.filter_by(recipe_id=recipe.id).all()
+        for recipeIngredient in recipeIngredients:
+            ingredient = Ingredient.query.get(recipeIngredient.ingredient_id)
+            ingrDict = {}
+            ingrDict["name"] = ingredient.name
+            ingrDict["amount"] = recipeIngredient.amount
+            ingrDict["unit"] = recipeIngredient.unit
+            recipe.ingredients.append(ingrDict)
 
     recipesPerUser = Recipe.list_how_many_recipes_per_user()
     
@@ -28,6 +38,10 @@ def recipes_create():
 
     if request.method == "GET":
         form = NewForm()
+        form.ingredients.append_entry({})
+        form.ingredients.append_entry({})
+        form.ingredients.append_entry({})
+        form.ingredients.append_entry({})
         form.ingredients.append_entry({})
         return render_template("recipes/new.html", form = form)
 
