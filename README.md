@@ -14,7 +14,7 @@ Harjoitustyössä tehdään elektroninen keittokirja. Käyttäjä voi tunnukset 
 
 **Tietokantakaavio:**
 
-![tietokantakaavio](/documentation/tkkaavio.png)
+![tietokantakaavio](/documentation/tkkaavio_paivitetty.png)
 
 
 **Linkkejä:**
@@ -23,7 +23,7 @@ Linkki [tietokantakaavioon](https://app.creately.com/diagram/bSgqFueVxxf/view)
 
 Linkki [user storyihin](https://github.com/iidxTe/keittokirja/blob/master/documentation/USERSTORIES.md)
 
-Linkki [Herokuun](https://keittokirja-tsoha.herokuapp.com/) (tällä hetkellä reseptille voi lisätä 1-5 ainesosaa, mutta vain ensimmäisen ainesosan editointi onnistuu)
+Linkki [Herokuun](https://keittokirja-tsoha.herokuapp.com/) (pe 21.2.: tällä hetkellä reseptin ainesosia ei pysty muokkaamaan)
 * testikäyttäjä 1: 
 name: testi, password: testi
 
