@@ -5,7 +5,7 @@ from application.ingredients.forms import IngredientForm
 
 #ADD MORE VALIDATORS
 
-class NewForm(FlaskForm):
+class NewRecipeForm(FlaskForm):
     header = StringField("Otsikoi resepti", [validators.InputRequired])
     category = StringField("Lisää kategoria", [validators.InputRequired])
     description = TextAreaField("Kirjoita kuvaus")
@@ -18,7 +18,7 @@ class NewForm(FlaskForm):
         csrf = False
 
 
-class EditForm(FlaskForm):
+class EditRecipeForm(FlaskForm):
     header = StringField("Muokkaa otsikkoa", [validators.InputRequired])
     category = StringField("Muokkaa kategoriaa", [validators.InputRequired])
     description = TextAreaField("Muokkaa kuvausta")

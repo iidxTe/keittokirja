@@ -3,13 +3,13 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.recipes.models import Recipe, RecipeIngredient
-from application.recipes.forms import NewForm, EditForm
+from application.recipes.forms import NewRecipeForm, EditRecipeForm
 from application.ingredients.forms import IngredientForm
 from application.ingredients.models import Ingredient
 
 from application.auth.models import User
 
-from sqlalchemy import update
+from sqlalchemy import update, exists
 
 
 @app.route("/recipes/<user_id>/", methods=["GET"])
@@ -37,7 +37,14 @@ def recipes_index(user_id):
 def recipes_create():
 
     if request.method == "GET":
-        form = NewForm()
+        form = NewRecipeForm()
+        form.ingredients.append_entry({})
+        form.ingredients.append_entry({})
+        form.ingredients.append_entry({})
+        form.ingredients.append_entry({})
+        form.ingredients.append_entry({})
+        form.ingredients.append_entry({})
+        form.ingredients.append_entry({})
         form.ingredients.append_entry({})
         form.ingredients.append_entry({})
         form.ingredients.append_entry({})
@@ -45,7 +52,7 @@ def recipes_create():
         form.ingredients.append_entry({})
         return render_template("recipes/new.html", form = form)
 
-    form = NewForm(request.form)
+    form = NewRecipeForm(request.form)
 
     recipe = Recipe(form.header.data, form.category.data, form.description.data, form.directions.data)
     recipe.account_id = current_user.id
@@ -80,38 +87,47 @@ def recipes_create():
 def recipes_edit(recipe_id):
 
     recipe = Recipe.query.get(recipe_id)
-    recipeIngredient = RecipeIngredient.query.filter_by(recipe_id=recipe.id).first()
-    ingredient = Ingredient.query.filter_by(id=recipeIngredient.ingredient_id).first()
+    recipeIngredients = RecipeIngredient.query.filter_by(recipe_id=recipe.id).all()
 
     if request.method == "GET":
-        form = EditForm()
-        #form.ingredients.append_entry({})
+        form = EditRecipeForm()
 
         form.header.data = recipe.header
         form.category.data = recipe.category
         form.description.data = recipe.description
 
-        ingredients = []
-        ingredientForm = IngredientForm()
+        form.ingredients = []      
 
-        ingredientForm.ingredientName.data = ingredient.name
-        ingredientForm.ingredientAmount.data = recipeIngredient.amount
-        ingredientForm.ingredientUnit.data = recipeIngredient.unit
+        for recipeIngredient in recipeIngredients:
+            ingredientForm = IngredientForm()
+            ingredient = Ingredient.query.get(recipeIngredient.ingredient_id)
 
-        ingredients.append(ingredientForm)
+            ingredientForm.ingredientName.data = ingredient.name
+            ingredientForm.ingredientAmount.data = recipeIngredient.amount
+            ingredientForm.ingredientUnit.data = recipeIngredient.unit
 
-        form.ingredients = ingredients
+            form.ingredients.append(ingredientForm)
+
 
         form.directions.data = recipe.directions
 
         return render_template("recipes/edit.html", recipe = recipe, form = form)
 
 
-    form = EditForm(request.form)
+    form = EditRecipeForm(request.form)
 
     recipe.header = form.header.data
     recipe.category = form.category.data
     recipe.description = form.description.data
+
+
+
+    #EI TOIMI:
+
+    '''
+
+    ingredient = Ingredient.query.filter_by(name=ingredientForm.data['ingredientName']).first()
+
 
     ingredientForm = IngredientForm(ingredientName=ingredient.name, ingredientAmount=recipeIngredient.amount, ingredientUnit=recipeIngredient.unit)
 
@@ -133,6 +149,11 @@ def recipes_edit(recipe_id):
 
     db.session().delete(recipeIngredient)
 
+    '''
+
+
+
+
     recipe.directions = form.directions.data
 
     db.session().commit()
@@ -146,8 +167,10 @@ def recipes_remove(recipe_id):
 
     recipe = Recipe.query.get(recipe_id)
 
-    recipeIngredient = RecipeIngredient.query.filter_by(recipe_id=recipe.id).first()
-    db.session().delete(recipeIngredient)
+    recipeIngredients = RecipeIngredient.query.filter_by(recipe_id=recipe.id).all()
+
+    for recipeIngredient in recipeIngredients:
+        db.session().delete(recipeIngredient)
 
     db.session().delete(recipe)
     db.session().commit()
