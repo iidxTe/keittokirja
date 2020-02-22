@@ -57,6 +57,8 @@ from application.recipes import views
 from application.auth import models
 from application.auth import views
 
+from application.user import views
+
 
 #kirjautuminen, osa 2
 from application.auth.models import User

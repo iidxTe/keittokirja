@@ -1,7 +1,13 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <p>
-    
-  </p>
+
+{% if current_user.is_authenticated %}
+<h3 align="center">
+  Tervetuloa Keittokirjasovellukseen. 
+  Tänne voit helposti tallentaa kaikki parhaat reseptisi 
+  ja tarkastella niitä koska vain haluat.
+</h3>
+  {% endif %}
+
 {% endblock %}

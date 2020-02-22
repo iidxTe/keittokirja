@@ -20,21 +20,17 @@
 
     {% if current_user.is_authenticated %}
 
-      <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('recipes_index', user_id=current_user.id) }}">Reseptisivulle</a>
-
+      <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('recipes_index', user_id=current_user.id) }}">Reseptisivulle</a>     
       <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('recipes_create') }}">Lisää resepti</a>
+      <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('go_to_user_info', user_id=current_user.id) }}">Omat tiedot</a>
       <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
 
     </nav>
 
     <br>
-    <p>
+
+    <p align="right">
       Olet Kirjautunut nimellä {{ current_user.name }}.
-    </p>
-    <p>
-      Tervetuloa Keittokirjasovellukseen. 
-      Tänne voit helposti tallentaa kaikki parhaat reseptisi 
-      ja tarkastella niitä koska vain haluat.
     </p>
 
     {% else %}
