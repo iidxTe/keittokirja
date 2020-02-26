@@ -27,10 +27,8 @@ def recipes_index(user_id):
             ingrDict["amount"] = recipeIngredient.amount
             ingrDict["unit"] = recipeIngredient.unit
             recipe.ingredients.append(ingrDict)
-
-    recipesPerUser = Recipe.list_how_many_recipes_per_user()
     
-    return render_template("recipes/list.html", recipes = recipes, recipesPerUser = recipesPerUser)
+    return render_template("recipes/list.html", recipes = recipes)
 
 @app.route("/recipes/new/", methods=["GET", "POST"])
 @login_required

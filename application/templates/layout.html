@@ -22,6 +22,7 @@
 
       <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('recipes_index', user_id=current_user.id) }}">Reseptisivulle</a>     
       <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('recipes_create') }}">Lisää resepti</a>
+      <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('go_to_statistics') }}">Tilastoja</a>
       <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('go_to_user_info', user_id=current_user.id) }}">Omat tiedot</a>
       <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
 

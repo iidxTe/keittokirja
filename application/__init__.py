@@ -59,6 +59,8 @@ from application.auth import views
 
 from application.user import views
 
+from application.statistics import views
+
 
 #kirjautuminen, osa 2
 from application.auth.models import User

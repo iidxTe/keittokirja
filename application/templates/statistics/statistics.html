@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% if recipesPerUser is defined %}
+  <h3>
+    Reseptejä per käyttäjä:
+  </h3>
+
+  <table class="table">
+    <tr>
+      <th>Nimi</th>
+      <th>Reseptejä</th>
+    </tr>
+    
+    {% for user in recipesPerUser %}
+    <tr>
+      <td>{{ user.name }}</td>
+      <td>{{ user.count }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+{% endif %}
+
+
+{% endblock %}
