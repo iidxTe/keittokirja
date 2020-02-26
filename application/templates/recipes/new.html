@@ -8,11 +8,6 @@
     <div class="w-100 p-4">
         <label for="header">{{ form.header.label }}</label><br>
         {{ form.header (class="form-control", rows="1")}}
-        <ul>
-            {% for error in form.header.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
     </div><br>
 
     <div class="w-100 p-4">

@@ -34,10 +34,12 @@ def edit_user(user_id):
     form = EditUserForm(request.form)
     user.account_id = current_user.id
 
-    '''
+
     if not form.validate():
         return render_template("user/edit.html", form = form, user=user)
-    '''
+
+    # ESTÄ NIMEN MUUTTAMINEN JOS SAMANNIMINEN KÄYTTÄJÄ
+
 
     user.name = form.name.data
     user.password = form.password.data
