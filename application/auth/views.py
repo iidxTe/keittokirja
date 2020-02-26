@@ -31,10 +31,11 @@ def auth_logout():
 def auth_register():
     if request.method == "GET":
         return render_template("auth/register.html", form = RegisterForm())
-        
+  
     form = RegisterForm(request.form)
     if not form.validate():
         return render_template("auth/register.html", form = form)
+    
 
     
     user = User.query.filter_by(name=form.name.data).first()

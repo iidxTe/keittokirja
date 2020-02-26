@@ -1,12 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, FieldList, FormField, validators
+from wtforms import StringField, TextAreaField, FieldList, FormField, ValidationError, validators
 
 from application.ingredients.forms import IngredientForm
 
 #ADD MORE VALIDATORS
 
 class NewRecipeForm(FlaskForm):
-    header = StringField("Otsikoi resepti", [validators.InputRequired])
+    header = StringField("Otsikoi resepti", [validators.Length(min=1, max=30)])
     category = StringField("Lisää kategoria", [validators.InputRequired])
     description = TextAreaField("Kirjoita kuvaus")
 

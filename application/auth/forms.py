@@ -1,7 +1,5 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, validators
-
-#ADD MORE VALIDATORS
   
 class LoginForm(FlaskForm):
     name = StringField("Nimi", [validators.InputRequired])
@@ -11,8 +9,8 @@ class LoginForm(FlaskForm):
         csrf = False
 
 class RegisterForm(FlaskForm):
-    name = StringField("Nimi", [validators.Length(min=2)])
-    password = PasswordField("Salasana", [validators.Length(min=5)])
+    name = StringField("Nimi", [validators.Length(min=2, max=20)])
+    password = PasswordField("Salasana", [validators.Length(min=5, max=20)])
   
     class Meta:
         csrf = False
