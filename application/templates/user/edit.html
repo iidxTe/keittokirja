@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{{ error }}
+<form method="POST" action="{{ url_for('edit_user', user_id=user.id) }}">
+  <table class="table">
+    <tr>
+      <td>
+	{{ form.name.label }}
+      </td>
+      <td>
+	{{ form.name }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	{{ form.password.label }}
+      </td>
+      <td>
+	{{ form.password }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.password.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      <button input type="submit" type="button" class="btn btn-info">Tallenna</button>
+      </td>
+    </tr>
+</form>
+
+
+{% endblock %}
