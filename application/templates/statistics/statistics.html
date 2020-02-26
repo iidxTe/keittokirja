@@ -25,5 +25,29 @@
 
 {% endif %}
 
+<br>
+<br>
+
+{% if ingredientsPerRecipe is defined %}
+  <h4>
+    Ainesosien esiintyvyys resepteissä:
+  </h4>
+
+  <table class="table">
+    <tr>
+      <th>Ainesosa</th>
+      <th>Monessako reseptissä</th>
+    </tr>
+    
+    {% for ingredient in ingredientsPerRecipe %}
+    <tr>
+      <td>{{ ingredient.name }}</td>
+      <td>{{ ingredient.incidence }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+{% endif %}
+
 
 {% endblock %}
