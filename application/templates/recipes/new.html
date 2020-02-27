@@ -2,7 +2,17 @@
 
 {% block body %}
 
-<h3 align="center">Lisää resepti</h3>
+<h3 align="center">Lisää resepti</h3><br>
+
+<div class="p-4">
+<div class="alert alert-warning" role="alert">
+    Luodessasi uuden reseptin voit lisätä sille max 10 ainesosaa.
+    Jos haluat lisätä reseptille enemmän kuin 10 ainesosaa, tallenna resepti
+    10 ensimmäisen ainesosan kanssa ja siirry muokkaamaan reseptiä.
+    Jokaisella muokkauskerralla reseptille on mahdollista lisätä 
+    2 uutta ainesosaa.
+  </div>
+</div>
 
 <form method="POST" action="{{ url_for('recipes_create') }}">
     <div class="w-100 p-4">

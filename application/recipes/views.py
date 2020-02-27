@@ -112,6 +112,9 @@ def recipes_edit(recipe_id):
 
             form.ingredients.append_entry(ingredientForm)
 
+        form.ingredients.append_entry({})
+        form.ingredients.append_entry({})
+
         form.directions.data = recipe.directions
 
         return render_template("recipes/edit.html", recipe = recipe, form = form)
