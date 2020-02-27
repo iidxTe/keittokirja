@@ -40,12 +40,12 @@
     </tr>
     
     {% for ingredient in ingredientsPerRecipe %}
-    {% if ingredient.incidence > 0 %}
-    <tr>
-      <td>{{ ingredient.name }}</td>
-      <td>{{ ingredient.incidence }}</td>
-    </tr>
-    {% endif %}
+      {% if ingredient.incidence > 0 %}
+      <tr>
+        <td>{{ ingredient.name }}</td>
+        <td>{{ ingredient.incidence }}</td>
+      </tr>
+      {% endif %}
     {% endfor %}
   </table>
 

@@ -20,7 +20,7 @@
 
     {% if current_user.is_authenticated %}
 
-      <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('recipes_index', user_id=current_user.id) }}">Reseptisivulle</a>     
+      <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('recipes_index', user_id=current_user.id) }}">Omat reseptit</a>     
       <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('recipes_create') }}">Lisää resepti</a>
       <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('go_to_statistics') }}">Tilastoja</a>
       <a class="nav-item nav-link" style="color: #000080;" href="{{ url_for('go_to_user_info', user_id=current_user.id) }}">Omat tiedot</a>
