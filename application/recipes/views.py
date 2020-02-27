@@ -53,7 +53,7 @@ def recipes_create():
     form = NewRecipeForm(request.form)
 
 
-    
+    #KORJAA
     '''
     if not form.validate():
         return render_template("recipes/new.html", form = form)

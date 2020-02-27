@@ -2,7 +2,6 @@
 
 {% block body %}
 
-{{ error }}
 <form method="POST" action="{{ url_for('edit_user', user_id=user.id) }}">
   <table class="table">
     <tr>
@@ -41,6 +40,5 @@
       </td>
     </tr>
 </form>
-
 
 {% endblock %}
