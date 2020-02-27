@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, validators
 
-#ADD MORE VALIDATORS
+#ADD VALIDATORS
 
 class IngredientForm(FlaskForm):
     ingredientName = StringField("Ainesosa")

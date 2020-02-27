@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
+<h3 align="center">Muokkaa reseptiä</h3>
+
 <form method="POST" action="{{ url_for('recipes_edit', recipe_id=recipe.id) }}", role=form>
     <div class="w-100 p-4">
         <label for="header">{{ form.header.label }}</label><br>
@@ -28,7 +31,6 @@
 
             <label for="ingredient unit">{{ ingredient.ingredientUnit.label }}</label><br>
             {{ ingredient.ingredientUnit (class="form-control", rows="1")}}
-
 
         </div><br>
     {% endfor %}

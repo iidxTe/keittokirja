@@ -102,18 +102,15 @@ def recipes_edit(recipe_id):
         form.category.data = recipe.category
         form.description.data = recipe.description
 
-        form.ingredients = []      
-
         for recipeIngredient in recipeIngredients:
             ingredientForm = IngredientForm()
             ingredient = Ingredient.query.get(recipeIngredient.ingredient_id)
 
-            ingredientForm.ingredientName.data = ingredient.name
-            ingredientForm.ingredientAmount.data = recipeIngredient.amount
-            ingredientForm.ingredientUnit.data = recipeIngredient.unit
+            ingredientForm.ingredientName = ingredient.name
+            ingredientForm.ingredientAmount = recipeIngredient.amount
+            ingredientForm.ingredientUnit = recipeIngredient.unit
 
-            form.ingredients.append(ingredientForm)
-
+            form.ingredients.append_entry(ingredientForm)
 
         form.directions.data = recipe.directions
 
@@ -126,38 +123,24 @@ def recipes_edit(recipe_id):
     recipe.category = form.category.data
     recipe.description = form.description.data
 
+    for recipeIngredient in recipeIngredients:
+        db.session().delete(recipeIngredient)
 
+    for ingredientForm in form.ingredients.data:
 
-    #EI TOIMI:
+        if ingredientForm['ingredientName']:
+            ingredient = Ingredient.query.filter_by(name=ingredientForm['ingredientName']).first()
 
-    '''
+            if not ingredient:
+                ingredient = Ingredient(ingredientForm['ingredientName'])
+                db.session().add(ingredient)
+                db.session().flush()
 
-    ingredient = Ingredient.query.filter_by(name=ingredientForm.data['ingredientName']).first()
+            recipeIngredient = RecipeIngredient(ingredientForm['ingredientAmount'], ingredientForm['ingredientUnit'])
+            recipeIngredient.recipe_id = recipe.id
+            recipeIngredient.ingredient_id = ingredient.id
 
-
-    ingredientForm = IngredientForm(ingredientName=ingredient.name, ingredientAmount=recipeIngredient.amount, ingredientUnit=recipeIngredient.unit)
-
-    ingredient = Ingredient.query.filter_by(name=ingredientForm.data['ingredientName']).first()
-
-    if not ingredient:
-        ingredient = Ingredient(ingredientForm.data['ingredientName'])
-        db.session().add(ingredient)
-        db.session().flush()
-
-
-    recipeIngredientNew = RecipeIngredient(ingredientForm.data['ingredientAmount'], ingredientForm.data['ingredientUnit'])
-
-    recipeIngredientNew.recipe_id = recipe.id
-
-    recipeIngredientNew.ingredient_id = ingredient.id
-
-    db.session().add(recipeIngredientNew)
-
-    db.session().delete(recipeIngredient)
-
-    '''
-
-
+            db.session().add(recipeIngredient)
 
 
     recipe.directions = form.directions.data
