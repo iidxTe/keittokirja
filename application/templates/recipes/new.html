@@ -20,7 +20,7 @@
         {{ form.header (class="form-control", rows="1")}}
         <ul>
             {% for error in form.header.errors %}
-            <li>{{ error }}</li>
+                <li>{{ error }}</li>
             {% endfor %}
         </ul>
     </div><br>
@@ -40,6 +40,12 @@
 
             <label for="ingredient name">{{ ingredient.ingredientName.label }}</label><br>
             {{ ingredient.ingredientName (class="form-control", rows="1")}}
+
+            <ul>
+                {% for error in ingredient.ingredientName.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
 
             <label for="ingredient amount">{{ ingredient.ingredientAmount.label }}</label><br>
             {{ ingredient.ingredientAmount (class="form-control", rows="1")}}

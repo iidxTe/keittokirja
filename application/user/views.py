@@ -29,7 +29,6 @@ def edit_user(user_id):
         form = EditUserForm()
 
         form.name.data = user.name
-        form.password.data = user.password
     
         return render_template("user/edit.html", form=form, user=user)
 
@@ -40,28 +39,29 @@ def edit_user(user_id):
     if not form.validate():
         return render_template("user/edit.html", form = form, user=user)
 
-    userWithSameName = User.query.filter_by(name=form.name.data).first()
+    if form.name.data != user.name:
+        userWithSameName = User.query.filter_by(name=form.name.data).first()
 
-    if not userWithSameName:
-        user.name = form.name.data
-        user.password = form.password.data
-        db.session().add(user)
-        db.session().commit()
+        if not userWithSameName:
+            user.name = form.name.data
+            user.password = form.password.data
+            db.session().add(user)
+            db.session().commit()
         
-        return redirect(url_for("go_to_user_info", user_id = user.account_id))
+            return redirect(url_for("go_to_user_info", user_id = user.account_id))
     
-    return render_template("user/edit.html", form = form, user=user,
-                               error = "Nimi jo käytössä")
+        return render_template("user/edit.html", form = form, user=user,
+                                error = "Nimi jo käytössä")
 
+    user.password = form.password.data
+    db.session().add(user)
+    db.session().commit()
+    return redirect(url_for("go_to_user_info", user_id = user.account_id))
+    
 
 @app.route("/user/userinfo/<user_id>/", methods=["POST"])
 @login_required
 def delete_user(user_id):
-
-    #logout_user() TARVIIKO?
-    #tuhoa RecipeIngredientit
-    #tuhoa Recipet
-    #tuhoa käyttäjä
 
     user = User.query.get(user_id)
 
