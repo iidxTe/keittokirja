@@ -26,10 +26,10 @@ Harjoitustyössä tehdään elektroninen keittokirja. Käyttäjä voi tunnukset 
 Linkki [Herokuun](https://keittokirja-tsoha.herokuapp.com/)
 
 * testikäyttäjä 1: 
-name: Anna, password: 12345
+nimi: Anna, salasana: 12345
 
 * testikäyttäjä 2: 
-name: Pekka, password: 12345
+nimi: Pekka, salasana: 12345
 
 Linkki [asennusohjeeseen](https://github.com/iidxTe/keittokirja/blob/master/documentation/Asennusohje.md)
 
