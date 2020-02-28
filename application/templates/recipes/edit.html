@@ -4,6 +4,12 @@
 
 <h3 align="center">Muokkaa reseptiä</h3>
 
+<div class="p-4">
+    <div class="alert alert-danger" role="alert">
+        Jos haluat poistaa reseptin, selaa sivun alalaitaan ja paina nappia "Poista resepti".
+      </div>
+    </div>
+
 <form method="POST" action="{{ url_for('recipes_edit', recipe_id=recipe.id) }}", role=form>
     <div class="w-100 p-4">
         <label for="header">{{ form.header.label }}</label><br>
@@ -34,6 +40,10 @@
             {% endfor %}
         </ul>
     </div><br>
+
+    <div class="p-4">
+        <p>Muokkaa ainesosia, niiden määrää ja määrän yksikköä</p>
+    </div>
 
     {% for ingredient in form.ingredients %}
         <div class="w-100 p-4">
