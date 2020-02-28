@@ -1,6 +1,6 @@
 CREATE TABLE ingredient (
 	id INTEGER NOT NULL, 
-	name VARCHAR(200) NOT NULL, 
+	name VARCHAR(50) NOT NULL, 
 	PRIMARY KEY (id)
 )
 
@@ -10,17 +10,15 @@ CREATE TABLE account (
 	date_modified DATETIME, 
 	name VARCHAR(144) NOT NULL, 
 	password VARCHAR(144) NOT NULL, 
-	role_id INTEGER, 
-	PRIMARY KEY (id), 
-	FOREIGN KEY(role_id) REFERENCES role (id)
+	PRIMARY KEY (id)
 )
 
 CREATE TABLE recipe (
 	id INTEGER NOT NULL, 
 	date_created DATETIME, 
 	date_modified DATETIME, 
-	header VARCHAR(200) NOT NULL, 
-	category VARCHAR(100) NOT NULL, 
+	header VARCHAR(50) NOT NULL, 
+	category VARCHAR(50) NOT NULL, 
 	description VARCHAR(1000), 
 	directions VARCHAR(10000) NOT NULL, 
 	account_id INTEGER NOT NULL, 
@@ -30,8 +28,8 @@ CREATE TABLE recipe (
 
 CREATE TABLE recipe_ingredient (
 	id INTEGER NOT NULL, 
-	amount FLOAT, 
-	unit VARCHAR(200), 
+	amount VARCHAR(50), 
+	unit VARCHAR(50), 
 	recipe_id INTEGER NOT NULL, 
 	ingredient_id INTEGER NOT NULL, 
 	PRIMARY KEY (id), 
