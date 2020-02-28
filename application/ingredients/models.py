@@ -5,8 +5,7 @@ from sqlalchemy.sql import text
 class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    name = db.Column(db.String(200), nullable=False)
-    #unique=True
+    name = db.Column(db.String(50), nullable=False)
 
     def __init__(self, name):
         self.name = name

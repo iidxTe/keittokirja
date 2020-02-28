@@ -1,12 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, validators
 
-#ADD VALIDATORS
-
 class IngredientForm(FlaskForm):
-    ingredientName = StringField("Ainesosa", [validators.Length(max=20)])
-    ingredientAmount = StringField("Määrä")
-    ingredientUnit = StringField("Yksikkö")
+    ingredientName = StringField("Ainesosa", [validators.Length(max=40)])
+    ingredientAmount = StringField("Määrä", [validators.Length(max=40)])
+    ingredientUnit = StringField("Yksikkö", [validators.Length(max=40)])
 
     class Meta:
         csrf = False

@@ -7,8 +7,8 @@ from sqlalchemy.sql import text
 
 class Recipe(Base):
 
-    header = db.Column(db.String(200), nullable=False)
-    category = db.Column(db.String(100), nullable=False)
+    header = db.Column(db.String(50), nullable=False)
+    category = db.Column(db.String(50), nullable=False)
 
     description = db.Column(db.String(1000), nullable=True)
     directions = db.Column(db.String(10000), nullable=False)
@@ -55,7 +55,7 @@ class RecipeIngredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     amount = db.Column(db.Float, nullable=True)
-    unit = db.Column(db.String(200), nullable=True)
+    unit = db.Column(db.String(50), nullable=True)
 
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'),
                            nullable=False)
