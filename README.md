@@ -4,28 +4,42 @@ Harjoitustyössä tehdään elektroninen keittokirja. Käyttäjä voi tunnukset 
 
 **Toimintoja:**
 
+* rekisteröityminen
 * kirjautuminen
+* omien tietojen tarkastelu
+* oman nimen ja salasanan päivittäminen
+* oman profiilin poistaminen
 * reseptin lisääminen
 * reseptin muokkaaminen
 * reseptin poistaminen
-* reseptien haku ainesosan perusteella
-* reseptien haku kategorioittain
+* reseptien tarkastelu
+* tilastojen tarkastelu
 
 
 **Tietokantakaavio:**
 
-![tietokantakaavio](/documentation/tkkaavio_paivitetty.png)
+![tietokantakaavio](/documentation/tkkaavio_uusin.png)
 
 
 **Linkkejä:**
+
+Linkki [Herokuun](https://keittokirja-tsoha.herokuapp.com/)
+
+* testikäyttäjä 1: 
+name: Anna, password: 12345
+
+* testikäyttäjä 2: 
+name: Pekka, password: 12345
+
+Linkki [asennusohjeeseen](https://github.com/iidxTe/keittokirja/blob/master/documentation/Asennusohje.md)
+
+Linkki [käyttöohjeeseen](https://github.com/iidxTe/keittokirja/blob/master/documentation/K%C3%A4ytt%C3%B6ohje.md)
 
 Linkki [tietokantakaavioon](https://app.creately.com/diagram/bSgqFueVxxf/view) 
 
 Linkki [user storyihin](https://github.com/iidxTe/keittokirja/blob/master/documentation/USERSTORIES.md)
 
-Linkki [Herokuun](https://keittokirja-tsoha.herokuapp.com/) (pe 21.2.: tällä hetkellä reseptin ainesosia ei pysty muokkaamaan)
-* testikäyttäjä 1: 
-name: testi, password: testi
+Linkki [CREATE TABLE -lauseisiin](https://github.com/iidxTe/keittokirja/blob/master/documentation/CREATE_TABLE_CLAUSES.md)
 
-* testikäyttäjä 2: 
-name: testi2, password: testi2
+Linkki [jatkokehitysideoihin](https://github.com/iidxTe/keittokirja/blob/master/documentation/Kehitysmahdollisuudet.md)
+
