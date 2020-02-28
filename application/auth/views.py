@@ -17,7 +17,6 @@ def auth_login():
         return render_template("auth/login.html", form = form,
                                error = "Väärä nimi tai salasana")
 
-
     login_user(user)
     return redirect(url_for("index"))
 
@@ -35,9 +34,7 @@ def auth_register():
     form = RegisterForm(request.form)
     if not form.validate():
         return render_template("auth/register.html", form = form)
-    
-
-    
+       
     user = User.query.filter_by(name=form.name.data).first()
 
     if not user:

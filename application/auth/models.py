@@ -11,10 +11,6 @@ class User(Base):
 
     recipes = db.relationship("Recipe", backref='account', lazy=True)
 
-    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
-    role = db.relationship("Role", backref='account')
-
-    #lisää rooli
 
     def __init__(self, name, password):
         self.name = name
@@ -31,12 +27,3 @@ class User(Base):
 
     def is_authenticated(self):
         return True
-
-    def roles(self):
-        return ["ADMIN"]
-
-    
-class Role(db.Model):
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(10), nullable=False)

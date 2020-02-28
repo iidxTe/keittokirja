@@ -52,10 +52,10 @@ def recipes_create():
 
     form = NewRecipeForm(request.form)
 
-    
+    '''
     if not form.validate():
         return render_template("recipes/new.html", form = form)
-    
+    '''
     
 
     recipe = Recipe(form.header.data, form.category.data, form.description.data, form.directions.data)
