@@ -38,10 +38,11 @@ class Recipe(Base):
 
     @staticmethod
     def list_how_many_recipes_per_user():
-        stmt = text("SELECT Account.name, COUNT(Recipe.account_id)"
+        stmt = text("SELECT Account.name, COUNT(Recipe.account_id) AS amount"
                     " FROM Account"
                     " LEFT JOIN Recipe ON Account.id = Recipe.account_id"
-                    " GROUP BY Account.id, Recipe.account_id")
+                    " GROUP BY Account.id, Recipe.account_id"
+                    " ORDER BY amount DESC")
         res = db.engine.execute(stmt)
 
         response = []

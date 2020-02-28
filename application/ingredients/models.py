@@ -14,10 +14,11 @@ class Ingredient(db.Model):
 
     @staticmethod
     def list_ingredients_per_recipe():
-        stmt = text("SELECT Ingredient.name, COUNT(Recipe_Ingredient.ingredient_id)"
+        stmt = text("SELECT Ingredient.name, COUNT(Recipe_Ingredient.ingredient_id) AS amount"
                     " FROM Ingredient"
                     " LEFT JOIN Recipe_Ingredient ON Ingredient.id = Recipe_Ingredient.ingredient_id"
-                    " GROUP BY Ingredient.id, Recipe_Ingredient.ingredient_id")
+                    " GROUP BY Ingredient.id, Recipe_Ingredient.ingredient_id"
+                    " ORDER BY amount DESC")
         res = db.engine.execute(stmt)
 
         response = []
