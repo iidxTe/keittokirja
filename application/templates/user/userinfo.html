@@ -23,7 +23,9 @@
 </form><br>
 
 <form method="POST" action="{{ url_for('delete_user', user_id=user.id) }}">
-    <button input type="submit" type="button" class="btn btn-danger">Poista käyttäjä</button>
+    <div class="text-right">
+        <button input type="submit" type="button" class="btn btn-danger">Poista käyttäjä</button>
+    </div>
 </form>
 
 {% endblock %}
