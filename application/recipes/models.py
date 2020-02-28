@@ -54,7 +54,7 @@ class Recipe(Base):
 class RecipeIngredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    amount = db.Column(db.Float, nullable=True)
+    amount = db.Column(db.String(50), nullable=True)
     unit = db.Column(db.String(50), nullable=True)
 
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'),
